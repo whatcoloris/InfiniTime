@@ -174,8 +174,10 @@ void SystemTask::Work() {
   displayApp.Register(this);
   displayApp.Start(bootError);
 
-  heartRateSensor.Init();
-  heartRateSensor.Disable();
+  //heartRateSensor.Init();
+  //heartRateSensor.Disable();
+  // this new line makes the Heart Rate Sensor work right away (hopefully)
+  heartRateController.Init(heartRateSensor.Enable());
   heartRateApp.Start();
 
   buttonHandler.Init(this);
