@@ -65,7 +65,8 @@ HeartRate::HeartRate(Pinetime::Applications::DisplayApp* app,
   if (isHrRunning)
     systemTask.PushMessage(Pinetime::System::Messages::DisableSleeping);
 
-  taskRefresh = lv_task_create(RefreshTaskCallback, 100, LV_TASK_PRIO_MID, this);
+  //taskRefresh = lv_task_create(RefreshTaskCallback, 100, LV_TASK_PRIO_MID, this);
+  taskRefresh = lv_task_create(RefreshTaskCallback, LV_DISP_DEF_REFR_PERIOD, LV_TASK_PRIO_MID, this);
 }
 
 HeartRate::~HeartRate() {
@@ -75,7 +76,6 @@ HeartRate::~HeartRate() {
 }
 
 void HeartRate::Refresh() {
-
   auto state = heartRateController.State();
   switch (state) {
     case Controllers::HeartRateController::States::NoTouch:
