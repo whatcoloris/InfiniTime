@@ -37,10 +37,10 @@ void HeartRateTask::Work() {
 
     if (xQueueReceive(messageQueue, &msg, delay)) {
       switch (msg) {
-        case Messages::GoToSleep:
-          StopMeasurement();
-          state = States::Idle;
-          break;
+        //case Messages::GoToSleep:
+        //  StopMeasurement();
+        //  state = States::Idle;
+        //  break;
         case Messages::WakeUp:
           state = States::Running;
           if (measurementStarted) {
